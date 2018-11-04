@@ -10,9 +10,9 @@ npm install bchjs
 ## Usage
 `bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
 ```javascript
-const { BCH, HttpProvider } = require('bchjs);
+const { BCH, HttpProvider } = require('bchjs');
 
-const bch = new BCH(new HttpProvider(`http://127.0.0.1:${this.opts.port}`, 'regtest', 'regtest'));
+const bch = new BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
 
 await bch.getblockchaininfo();
 ```

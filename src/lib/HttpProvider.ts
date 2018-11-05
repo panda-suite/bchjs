@@ -1,16 +1,17 @@
-const axios = require('axios');
+import axios from 'axios';
 
-class HttpProvider {
-  constructor(host, user, password, timeout, headers) {
+export default class HttpProvider {
+  constructor(private host: string, private user: string, private password: string, private timeout?: number, private headers?: any) {
     this.host = host || 'http://localhost:48332';
     this.user = user || 'regtest';
     this.password = password || 'regtest';
     this.timeout = timeout || 0;
     this.headers = headers || {};
-    this.rpcCounter = 0;
   }
 
-  preparePayload(method, ...params) {
+  private rpcCounter: number = 0;
+
+  private preparePayload(method: string, ...params: any[]) {
     const payload = {
       jsonrpc: '1.0',
       id: this.rpcCounter++,
@@ -21,7 +22,7 @@ class HttpProvider {
     return JSON.stringify(payload);
   }
 
-  prepareRequest(method, ...params) {
+  private prepareRequest(method: string, ...params: any[]) {
     const payload = this.preparePayload(method, ...params);
 
     let headers = this.headers;
@@ -31,7 +32,7 @@ class HttpProvider {
       method: 'POST',
       url: this.host,
       auth: {
-        username: this.username,
+        username: this.user,
         password: this.password
       },
       timeout: this.timeout,
@@ -42,11 +43,12 @@ class HttpProvider {
     return req;
   }
 
-  async send(method, ...params) {
+  public async send(method: string, ...params: any[]) {
     const request = this.prepareRequest(method, ...params);
 
     try {
       const response = axios(request);
+
       return response.data;
     } catch (e) {
       // TODO: Handle error
@@ -54,7 +56,7 @@ class HttpProvider {
     }
   }
 
-  async isConnected() {
+  public async isConnected() {
     try {
       await this.send('getinfo');
       return true;
@@ -63,5 +65,3 @@ class HttpProvider {
     }
   }
 }
-
-module.exports = HttpProvider;

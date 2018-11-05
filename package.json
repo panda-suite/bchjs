@@ -2,12 +2,25 @@
   "name": "bchjs",
   "version": "0.1.0-alpha.1",
   "description": "bch.js is a lightweight wrapper around a Bitcoin Cash Node RPC",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "mocha": "./node_modules/.bin/mocha",
-    "test": "npm run mocha"
+    "test": "npm run mocha",
+    "build": "node ./node_modules/gulp/bin/gulp.js && node ./node_modules/webpack/bin/webpack.js"
   },
-  "keywords": [],
+  "keywords": [
+    "bitcoin",
+    "bitcoincash",
+    "btc",
+    "bch",
+    "ganache-cli",
+    "devtools",
+    "blockchain",
+    "pandacash",
+    "bitcoin-com",
+    "bitbox",
+    "web3"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,6 +28,14 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "mocha": "^5.2.0",
+    "run-sequence": "^2.2.1",
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.6",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.25.0",
+    "webpack-cli": "^3.1.2"
   }
 }

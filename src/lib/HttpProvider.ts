@@ -47,7 +47,7 @@ export default class HttpProvider {
     const request = this.prepareRequest(method, ...params);
 
     try {
-      const response = axios(request);
+      const response = await axios(request);
 
       return response.data;
     } catch (e) {
@@ -58,8 +58,9 @@ export default class HttpProvider {
 
   public async isConnected() {
     try {
-      await this.send('getinfo');
-      return true;
+      const info = await this.send('getinfo');
+
+      return !!info;
     } catch (e) {
       return false;
     }

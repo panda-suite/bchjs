@@ -2,10 +2,10 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: "./src/index.ts",
     output: {
-        filename: 'bchjs.js',
+        filename: 'bch.js',
         path: path.resolve(__dirname, 'dist')
     },
     module: {

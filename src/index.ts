@@ -1,7 +1,5 @@
-import BCH from "./lib/BCH";
-import HttpProvider from "./lib/HttpProvider";
+import _BCH from "./lib/BCH";
+import _HttpProvider from "./lib/HttpProvider";
 
-export default {
-  BCH,
-  HttpProvider
-};
+export const BCH = _BCH;
+export const HttpProvider = _HttpProvider;

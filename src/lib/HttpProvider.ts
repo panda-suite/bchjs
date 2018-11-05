@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as errors from './errors';
 
 export default class HttpProvider {
   constructor(private host: string, private user: string, private password: string, private timeout?: number, private headers?: any) {
@@ -48,11 +49,9 @@ export default class HttpProvider {
 
     try {
       const response = await axios(request);
-
       return response.data;
     } catch (e) {
-      // TODO: Handle error
-      console.log(e);
+      return errors.InvalidResponse(e);
     }
   }
 

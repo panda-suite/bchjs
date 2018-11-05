@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
+var errors = require("./errors");
 var HttpProvider = /** @class */ (function () {
     function HttpProvider(host, user, password, timeout, headers) {
         this.host = host;
@@ -104,9 +105,7 @@ var HttpProvider = /** @class */ (function () {
                         return [2 /*return*/, response.data];
                     case 3:
                         e_1 = _a.sent();
-                        // TODO: Handle error
-                        console.log(e_1);
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, errors.InvalidResponse(e_1)];
                     case 4: return [2 /*return*/];
                 }
             });

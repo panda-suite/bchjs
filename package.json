@@ -3,11 +3,13 @@
   "version": "0.1.0-alpha.1",
   "description": "bch.js is a lightweight wrapper around a Bitcoin Cash Node RPC",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "mocha": "./node_modules/.bin/mocha",
     "test": "npm run build && npm run mocha",
     "build": "node ./node_modules/gulp/bin/gulp.js && ./node_modules/typescript/bin/tsc",
-    "build:webpack": "node ./node_modules/gulp/bin/gulp.js && node ./node_modules/webpack/bin/webpack.js"
+    "build:webpack": "node ./node_modules/gulp/bin/gulp.js && node ./node_modules/webpack/bin/webpack.js",
+    "prepublishOnly": "npm install && npm run build"
   },
   "keywords": [
     "bitcoin",

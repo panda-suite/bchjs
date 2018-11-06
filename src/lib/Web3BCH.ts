@@ -1,10 +1,10 @@
 import HttpProvider from './HttpProvider';
 import { RPCParam } from '../interfaces';
-export default class BCH {
+export default class Web3BCH {
   constructor(private provider: HttpProvider) {
     this.provider = provider || new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
 
-    BCH.rpcMethods.forEach(method => {
+    Web3BCH.rpcMethods.forEach(method => {
       this.rpc[method] = this.methodFactory(method);
     });
   }

@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var HttpProvider_1 = require("./HttpProvider");
-var BCH = /** @class */ (function () {
-    function BCH(provider) {
+var Web3BCH = /** @class */ (function () {
+    function Web3BCH(provider) {
         var _this = this;
         this.provider = provider;
         this.rpc = {};
         this.provider = provider || new HttpProvider_1.default('http://localhost:48332', 'regtest', 'regtest');
-        BCH.rpcMethods.forEach(function (method) {
+        Web3BCH.rpcMethods.forEach(function (method) {
             _this.rpc[method] = _this.methodFactory(method);
         });
     }
-    BCH.prototype.methodFactory = function (methodName) {
+    Web3BCH.prototype.methodFactory = function (methodName) {
         var _this = this;
         return function () {
             var params = [];
@@ -22,7 +22,7 @@ var BCH = /** @class */ (function () {
             return (_a = _this.provider).send.apply(_a, [methodName].concat(params));
         };
     };
-    BCH.rpcMethods = [
+    Web3BCH.rpcMethods = [
         "getinfo",
         "generatetoaddress",
         "getblockchaininfo",
@@ -36,6 +36,6 @@ var BCH = /** @class */ (function () {
         "getaddressesbyaccount",
         "dumpprivkey"
     ];
-    return BCH;
+    return Web3BCH;
 }());
-exports.default = BCH;
+exports.default = Web3BCH;

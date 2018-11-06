@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var BCH_1 = require("./lib/BCH");
+var Web3BCH_1 = require("./lib/Web3BCH");
 var HttpProvider_1 = require("./lib/HttpProvider");
-exports.BCH = BCH_1.default;
+exports.Web3BCH = Web3BCH_1.default;
 exports.HttpProvider = HttpProvider_1.default;

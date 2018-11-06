@@ -1,37 +1,37 @@
-# bch.js
+# Bitcoin Cash JavaScript API
 
-`bch.js` is a lightweight wrapper around a Bitcoin Cash Node RPC. This allows you to easily create tooling around any Bitcoin Cash Node functionality. It uses an `HttpProvider` API similar to the one used by Ethereum's `web3.js`, so any developer familiar with Ethereum will feel right at home.
+`web3bch.js` is a lightweight wrapper around a Bitcoin Cash Node RPC. This allows you to easily create tooling around any Bitcoin Cash Node functionality. It uses an `HttpProvider` API similar to the one used by Ethereum's `web3.js`, so any developer familiar with Ethereum will feel right at home.
 
 ## Installation
 ```bash
-npm install bchjs
+npm install web3bch
 ```
 
 ## Usage
-`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
+`web3bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
 ```javascript
-const { BCH, HttpProvider } = require('bchjs');
+const { Web3BCH, HttpProvider } = require('web3bch');
 
-const bch = new BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
+const web3bch = new Web3BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
 
-await bch.rpc.getblockchaininfo();
+await web3bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls
 Currently, the following RPC calls are supported:
 
-* bch.rpc.getinfo()
-* bch.rpc.getblockchaininfo()
-* bch.rpc.importaddress(address)
-* bch.rpc.generatetoaddress(blocks, address)
-* bch.rpc.generate(blocks)
-* bch.rpc.importaddress()
-* bch.rpc.listunspent()
-* bch.rpc.getwalletinfo()
-* bch.rpc.getbalance()
-* bch.rpc.sendtoaddress()
-* bch.rpc.importprivkey()
-* bch.rpc.getaddressesbyaccount()
-* bch.rpc.dumpprivkey()
+* web3bch.rpc.getinfo
+* web3bch.rpc.getblockchaininfo
+* web3bch.rpc.importaddress
+* web3bch.rpc.generatetoaddress
+* web3bch.rpc.generate
+* web3bch.rpc.importaddress
+* web3bch.rpc.listunspent
+* web3bch.rpc.getwalletinfo
+* web3bch.rpc.getbalance
+* web3bch.rpc.sendtoaddress
+* web3bch.rpc.importprivkey
+* web3bch.rpc.getaddressesbyaccount
+* web3bch.rpc.dumpprivkey
 
 Other RPC calls will be added in a later version.

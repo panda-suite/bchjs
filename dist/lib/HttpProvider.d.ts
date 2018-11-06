@@ -1,3 +1,4 @@
+import { RPCParam } from '../interfaces';
 export default class HttpProvider {
     private host;
     private user;
@@ -8,6 +9,6 @@ export default class HttpProvider {
     private rpcCounter;
     private preparePayload;
     private prepareRequest;
-    send(method: string, ...params: any[]): Promise<any>;
+    send(method: string, ...params: RPCParam[]): Promise<any>;
     isConnected(): Promise<boolean>;
 }

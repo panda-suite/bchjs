@@ -1,5 +1,5 @@
-import _BCH from "./lib/BCH";
+import _Web3BCH from "./lib/Web3BCH";
 import _HttpProvider from "./lib/HttpProvider";
 
-export const BCH = _BCH;
+export const Web3BCH = _Web3BCH;
 export const HttpProvider = _HttpProvider;

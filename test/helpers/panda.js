@@ -14,10 +14,8 @@ const runLocalNode = done => {
     debug: false
   })
 
-  server.listen(48332, (err, pandaCashCore) => {
-    if (err) return console.error(err)
-
-    done()
+  server.listen(48334, (err, pandaCashCore) => {
+    done(err, pandaCashCore)
   })
 }
 

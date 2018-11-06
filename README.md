@@ -14,16 +14,24 @@ const { BCH, HttpProvider } = require('bchjs');
 
 const bch = new BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
 
-await bch.getblockchaininfo();
+await bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls
 Currently, the following RPC calls are supported:
 
-* bch.getinfo()
-* bch.getblockchaininfo()
-* bch.importaddress(address)
-* bch.generatetoaddress(blocks, address)
-* bch.generate(blocks)
+* bch.rpc.getinfo()
+* bch.rpc.getblockchaininfo()
+* bch.rpc.importaddress(address)
+* bch.rpc.generatetoaddress(blocks, address)
+* bch.rpc.generate(blocks)
+* bch.rpc.importaddress()
+* bch.rpc.listunspent()
+* bch.rpc.getwalletinfo()
+* bch.rpc.getbalance()
+* bch.rpc.sendtoaddress()
+* bch.rpc.importprivkey()
+* bch.rpc.getaddressesbyaccount()
+* bch.rpc.dumpprivkey()
 
 Other RPC calls will be added in a later version.

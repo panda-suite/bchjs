@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RPCParam } from '../interfaces';
 
 export default class HttpProvider {
   constructor(private host: string, private user: string, private password: string, private timeout?: number, private headers?: any) {
@@ -11,7 +12,7 @@ export default class HttpProvider {
 
   private rpcCounter: number = 0;
 
-  private preparePayload(method: string, ...params: any[]) {
+  private preparePayload(method: string, ...params: RPCParam[]) {
     const payload = {
       jsonrpc: '1.0',
       id: this.rpcCounter++,
@@ -22,7 +23,7 @@ export default class HttpProvider {
     return JSON.stringify(payload);
   }
 
-  private prepareRequest(method: string, ...params: any[]) {
+  private prepareRequest(method: string, ...params: RPCParam[]) {
     const payload = this.preparePayload(method, ...params);
 
     let headers = this.headers;
@@ -43,7 +44,7 @@ export default class HttpProvider {
     return req;
   }
 
-  public async send(method: string, ...params: any[]) {
+  public async send(method: string, ...params: RPCParam[]) {
     const request = this.prepareRequest(method, ...params);
 
     try {

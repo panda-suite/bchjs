@@ -101,12 +101,16 @@ var HttpProvider = /** @class */ (function () {
                         _a.trys.push([1, 3, , 4]);
                         return [4 /*yield*/, axios_1.default(request)];
                     case 2:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
+                        response = (_a.sent());
+                        return [3 /*break*/, 4];
                     case 3:
                         e_1 = _a.sent();
                         return [2 /*return*/, errors.InvalidResponse(e_1)];
-                    case 4: return [2 /*return*/];
+                    case 4:
+                        if (response.error) {
+                            return [2 /*return*/, errors.InvalidResponse(response)];
+                        }
+                        return [2 /*return*/, response.data.result];
                 }
             });
         });

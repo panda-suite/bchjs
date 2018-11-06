@@ -48,12 +48,19 @@ export default class HttpProvider {
   public async send(method: string, ...params: RPCParam[]) {
     const request = this.prepareRequest(method, ...params);
 
+    let response: { error: any, data: any };
+
     try {
-      const response = await axios(request);
-      return response.data;
+      response = (await axios(request)) as any;
     } catch (e) {
       return errors.InvalidResponse(e);
     }
+
+    if (response.error) {
+      return errors.InvalidResponse(response);
+    }
+
+    return response.data.result;
   }
 
   public async isConnected() {

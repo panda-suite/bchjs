@@ -1,20 +1,35 @@
 # Bitcoin Cash JavaScript API
 
-`web3bch.js` is a lightweight wrapper around a Bitcoin Cash Node RPC. This allows you to easily create tooling around any Bitcoin Cash Node functionality. It uses an `HttpProvider` API similar to the one used by Ethereum's `web3.js`, so any developer familiar with Ethereum will feel right at home.
+`bch.js` is a lightweight wrapper around a Bitcoin Cash Node RPC. This allows you to easily create tooling around any Bitcoin Cash Node functionality. It uses an `HttpProvider` API similar to the one used by Ethereum's `web3.js`, so any developer familiar with Ethereum will feel right at home.
 
 ## Installation
 ```bash
-npm install web3bch
+npm install bchjs
 ```
 
 ## Usage
-`web3bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
 ```javascript
-const { Web3BCH, HttpProvider } = require('web3bch');
+const { Web3BCH, HttpProvider } = require('bchjs');
 
 const web3bch = new Web3BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
 
 await web3bch.rpc.getblockchaininfo();
+```
+
+## Pandacash and bchjs
+`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
+
+```javascript
+const panda = require("pandacash-cli");
+const { Web3BCH, HttpProvider } = require('bchjs');
+
+const server = panda.server();
+
+server.listen(48334, (err) => {
+    const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334'));
+
+    await web3bch.rpc.getblockchaininfo();
+});
 ```
 
 ## Supported RPC calls

@@ -9,17 +9,34 @@ let accounts;
 describe('Web3BCH', () => {
   before(done => panda.runLocalNode((err, pandaCashCore) => {
     accounts = pandaCashCore.accounts;
-    console.log(accounts)
+
     done();
   }));
-  
-  it('gets blockchain info', async () => {
+
+  it('web3bch.rpc.getinfo', async () => {
     const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334', 'regtest', 'regtest'));
 
     try {
         const response = await web3bch.rpc.getinfo();
 
-        console.log(response);
+        assert.deepEqual(Object.keys(response), [
+            "version",
+            "protocolversion",
+            "walletversion",
+            "balance",
+            "blocks",
+            "timeoffset",
+            "connections",
+            "proxy",
+            "difficulty",
+            "testnet",
+            "keypoololdest",
+            "keypoolsize",
+            "unlocked_until",
+            "paytxfee",
+            "relayfee",
+            "errors"
+        ]);
     } catch (err) {
         console.log(err);
     }

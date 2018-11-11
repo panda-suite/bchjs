@@ -16,20 +16,21 @@ const web3bch = new Web3BCH(new HttpProvider('http://localhost:48332', 'regtest'
 await web3bch.rpc.getblockchaininfo();
 ```
 
-## Pandacash and bch.js
-`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node such as the [`pandacash-cli`](https://github.com/panda-suite/pandacash-cli) local blockchain.
+
+## Pandacash and bchjs
+`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node. You can use [`pandacash-core`](https://github.com/panda-suite/pandacash-core) local blockchain for local development and testing. 
 
 ```javascript
-const panda = require("pandacash-cli");
+const panda = require("pandacash-core");
 const { Web3BCH, HttpProvider } = require('bchjs');
 
 const server = panda.server();
 
-server.listen(48334, (err) => {
-    const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334'));
+await server.listen(48334);
 
-    await web3bch.rpc.getblockchaininfo();
-});
+const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334'));
+
+await web3bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls

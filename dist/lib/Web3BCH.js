@@ -23,9 +23,6 @@ var Web3BCH = /** @class */ (function () {
         };
     };
     Web3BCH.rpcMethods = [
-        "getinfo",
-        "generatetoaddress",
-        "getblockchaininfo",
         "generate",
         "importaddress",
         "listunspent",
@@ -34,7 +31,8 @@ var Web3BCH = /** @class */ (function () {
         "sendtoaddress",
         "importprivkey",
         "getaddressesbyaccount",
-        "dumpprivkey"
+        "dumpprivkey",
+        "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount", "getblockhash", "getblockheader", "getchaintips", "getchaintxstats", "getdifficulty", "getmempoolancestors", "getmempooldescendants", "getmempoolentry txid", "getmempoolinfo", "getrawmempool", "gettxout", "gettxoutproof", "gettxoutsetinfo", "preciousblock", "pruneblockchain", "verifychain", "verifytxoutproof “proof”", "getinfo", "getmemoryinfo", "help", "stop", "uptime", "generatetoaddress", "getblocktemplate", "getmininginfo", "getnetworkhashps", "prioritisetransaction", "submitblock", "addnode", "clearbanned", "disconnectnode", "getaddednodeinfo", "getconnectioncount", "getexcessiveblock", "getnettotals", "getnetworkinfo", "getpeerinfo", "listbanned", "ping", "setban", "setexcessiveblock", "setnetworkactive", "createrawtransaction", "decoderawtransaction", "decodescript", "getrawtransaction", "sendrawtransaction", "signrawtransaction", "createmultisig", "estimatefee", "estimatepriority", "estimatesmartfee", "estimatesmartpriority", "signmessagewithprivkey", "validateaddress", "verifymessage"
     ];
     return Web3BCH;
 }());

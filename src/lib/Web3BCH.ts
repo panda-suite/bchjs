@@ -12,9 +12,6 @@ export default class Web3BCH {
   public rpc: { [method: string]: (...params: RPCParam[]) => Promise<any> } = {};
 
   static rpcMethods = [
-    "getinfo",
-    "generatetoaddress",
-    "getblockchaininfo",
     "generate",
     "importaddress",
     "listunspent",
@@ -23,7 +20,10 @@ export default class Web3BCH {
     "sendtoaddress",
     "importprivkey",
     "getaddressesbyaccount",
-    "dumpprivkey"
+    "dumpprivkey",
+
+    // experimental:
+    "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount", "getblockhash", "getblockheader", "getchaintips", "getchaintxstats", "getdifficulty", "getmempoolancestors", "getmempooldescendants", "getmempoolentry txid", "getmempoolinfo", "getrawmempool", "gettxout", "gettxoutproof", "gettxoutsetinfo", "preciousblock", "pruneblockchain", "verifychain", "verifytxoutproof “proof”", "getinfo", "getmemoryinfo", "help", "stop", "uptime", "generatetoaddress", "getblocktemplate", "getmininginfo", "getnetworkhashps", "prioritisetransaction", "submitblock", "addnode", "clearbanned", "disconnectnode", "getaddednodeinfo", "getconnectioncount", "getexcessiveblock", "getnettotals", "getnetworkinfo", "getpeerinfo", "listbanned", "ping", "setban", "setexcessiveblock", "setnetworkactive", "createrawtransaction", "decoderawtransaction", "decodescript", "getrawtransaction", "sendrawtransaction", "signrawtransaction", "createmultisig", "estimatefee", "estimatepriority", "estimatesmartfee", "estimatesmartpriority", "signmessagewithprivkey", "validateaddress", "verifymessage"
   ];
 
   private methodFactory(methodName: string) {

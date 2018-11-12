@@ -1,5 +1,4 @@
 # Bitcoin Cash JavaScript API
-
 `bch.js` is a lightweight wrapper around a Bitcoin Cash Node RPC. This allows you to easily create tooling around any Bitcoin Cash Node functionality. It uses an `HttpProvider` API similar to the one used by Ethereum's `web3.js`, so any developer familiar with Ethereum will feel right at home.
 
 ## Installation
@@ -9,13 +8,13 @@ npm install bchjs
 
 ## Usage
 ```javascript
-const { Web3BCH, HttpProvider } = require('bchjs');
+const { BCH, HttpProvider } = require('bchjs');
 
-const httpNodeProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
-const httpNodeWalletProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
-const web3bch = new Web3BCH(httpNodeProvider, httpNodeWalletProvider);
+const httpBlockchainProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
+const httpWalletProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
+const bch = new BCH(httpBlockchainProvider, httpWalletProvider);
 
-await web3bch.rpc.getblockchaininfo();
+await bch.rpc.getblockchaininfo();
 ```
 
 ## Pandacash and bchjs
@@ -23,15 +22,15 @@ await web3bch.rpc.getblockchaininfo();
 
 ```javascript
 const panda = require("pandacash-core");
-const { Web3BCH, HttpProvider } = require('bchjs');
+const { BCH, HttpProvider } = require('bchjs');
 
-const server = panda.server();
+const server = await panda.server().listen({port: 48332, walletPort: 48333});
+const bch = new BCH(
+    new HttpProvider('http://localhost:48332'),
+    new HttpProvider('http://localhost:48333')
+);
 
-await server.listen(48334);
-
-const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334'));
-
-await web3bch.rpc.getblockchaininfo();
+await bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls

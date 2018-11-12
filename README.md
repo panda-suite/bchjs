@@ -9,45 +9,48 @@ npm install bchjs
 
 ## Usage
 ```javascript
-const { Web3BCH, HttpProvider } = require('bchjs');
+const { BCH, HttpProvider } = require('bchjs');
 
-const web3bch = new Web3BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
+const bch = new BCH(
+    new HttpProvider('http://localhost:48332', 'regtest', 'regtest'), // blockchain provider
+    new HttpProvider('http://localhost:48333', 'regtest', 'regtest') // wallet provider
+);
 
-await web3bch.rpc.getblockchaininfo();
+await bch.rpc.getblockchaininfo();
 ```
 
 
 ## Pandacash and bchjs
-`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node. You can use [`pandacash-core`](https://github.com/panda-suite/pandacash-core) local blockchain for local development and testing. 
+`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node. You can usethe  [`pandacash-core`](https://github.com/panda-suite/pandacash-core) local blockchain for local development and testing.
 
 ```javascript
 const panda = require("pandacash-core");
-const { Web3BCH, HttpProvider } = require('bchjs');
+const { BCH, HttpProvider } = require('bchjs');
 
-const server = panda.server();
+const server = await panda.server().listen({port: 48332, walletPort: 48333});
+const bch = new BCH(
+    new HttpProvider('http://localhost:48332'),
+    new HttpProvider('http://localhost:48333')
+    );
 
-await server.listen(48334);
-
-const web3bch = new Web3BCH(new HttpProvider('http://localhost:48334'));
-
-await web3bch.rpc.getblockchaininfo();
+await bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls
 Currently, the following RPC calls are supported:
 
-* web3bch.rpc.getinfo
-* web3bch.rpc.getblockchaininfo
-* web3bch.rpc.importaddress
-* web3bch.rpc.generatetoaddress
-* web3bch.rpc.generate
-* web3bch.rpc.importaddress
-* web3bch.rpc.listunspent
-* web3bch.rpc.getwalletinfo
-* web3bch.rpc.getbalance
-* web3bch.rpc.sendtoaddress
-* web3bch.rpc.importprivkey
-* web3bch.rpc.getaddressesbyaccount
-* web3bch.rpc.dumpprivkey
+* bch.rpc.getinfo
+* bch.rpc.getblockchaininfo
+* bch.rpc.importaddress
+* bch.rpc.generatetoaddress
+* bch.rpc.generate
+* bch.rpc.importaddress
+* bch.rpc.listunspent
+* bch.rpc.getwalletinfo
+* bch.rpc.getbalance
+* bch.rpc.sendtoaddress
+* bch.rpc.importprivkey
+* bch.rpc.getaddressesbyaccount
+* bch.rpc.dumpprivkey
 
 Other RPC calls will be added in a later version.

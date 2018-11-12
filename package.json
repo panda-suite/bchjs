@@ -1,6 +1,6 @@
 {
   "name": "bchjs",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "bch.js is a lightweight wrapper around a Bitcoin Cash Node RPC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

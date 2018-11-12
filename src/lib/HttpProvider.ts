@@ -66,7 +66,6 @@ export default class HttpProvider {
   public async isConnected() {
     try {
       const info = await this.send('getinfo');
-
       return !!info;
     } catch (e) {
       return false;

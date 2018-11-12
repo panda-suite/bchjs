@@ -1,11 +1,10 @@
-"use strict"
-
 /**
  * Read more about panda here: https://panda-suite.github.io/
  */
-const panda = require("pandacash-core");
 
-const runLocalNode = (cb) => {
+const panda = require("pandacash-core")
+
+const startServer = async () => {
   const server = panda.server({
     // always the same mnemonic
     mnemonic: "evil sudden oven discover exist approve can catalog farm ivory mom rug",
@@ -14,12 +13,9 @@ const runLocalNode = (cb) => {
     debug: false
   });
 
-  const core = server.listen({
-      port: 48334,
-      walletPort: 48335
-  }, cb);
-};
+  return await server.listen({port: 48332, walletPort: 48333});
+}
 
 module.exports = {
-  runLocalNode
+  startServer
 }

@@ -45,6 +45,21 @@ describe('BCH', () => {
       console.log(err);
     }
   });
+
+  it('bch.rpc.getbalance', async () => {
+    const bch = new BCH(
+      new HttpProvider('http://localhost:48332', 'regtest', 'regtest'),
+      new HttpProvider('http://localhost:48333', 'regtest', 'regtest')
+    );
+
+    try {
+      const balance = await bch.rpc.getbalance();
+
+      assert(balance, 11650);
+    } catch (err) {
+      console.log(err);
+    }
+  });
   /*
   it('web3bch.bch.createTransaction', async () => {
     const web3bch = new Web3BCH(new HttpProvider('http://localhost:48335', 'panda', 'panda'));

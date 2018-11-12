@@ -23,7 +23,6 @@ export default class BCH {
     // createTransaction: (transactionObject: ITransactionObject) => this.createTransaction(transactionObject)
   }
 
-
   static blockchainMethods = [
     // From Bitcoin-ABC v0.18.3
     // == Blockchain ==

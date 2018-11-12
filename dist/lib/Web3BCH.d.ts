@@ -1,11 +1,11 @@
 import HttpProvider from './HttpProvider';
-import { RPCParam } from '../interfaces';
-export default class Web3BCH {
-    private provider;
+import BCHRPC from './BCHRPC';
+import { ITransactionObject } from '../interfaces';
+export default class Web3BCH extends BCHRPC {
     constructor(provider: HttpProvider);
-    rpc: {
-        [method: string]: (...params: RPCParam[]) => Promise<any>;
+    defaultPrivateKey: string;
+    bch: {
+        createTransaction: (transactionObject: ITransactionObject) => Promise<any>;
     };
-    static rpcMethods: string[];
-    private methodFactory;
+    private createTransaction;
 }

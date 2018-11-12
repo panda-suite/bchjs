@@ -12,7 +12,7 @@ export function InvalidProvider() {
 }
 
 export function InvalidResponse(result: any) {
-  var message = !!result && !!result.error && !!result.error.message ? result.error.message : `Invalid JSON RPC response: ${JSON.stringify(result)}`;
+  var message = !!result && !!result.error && !!result.error.message ? result.error.message : `Invalid JSON RPC response: ${JSON.stringify(result.error)}`;
   return new Error(message);
 }
 

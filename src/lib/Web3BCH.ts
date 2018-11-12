@@ -1,32 +1,44 @@
 import HttpProvider from './HttpProvider';
-import { RPCParam } from '../interfaces';
-export default class Web3BCH {
-  constructor(private provider: HttpProvider) {
-    this.provider = provider || new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
+import BCHRPC from './BCHRPC';
+import { ITransactionObject } from '../interfaces';
+const bch = require('bitcoincashjs');
 
-    Web3BCH.rpcMethods.forEach(method => {
-      this.rpc[method] = this.methodFactory(method);
-    });
+
+export default class Web3BCH extends BCHRPC {
+  constructor(provider: HttpProvider) {
+    super(provider);
   }
 
-  public rpc: { [method: string]: (...params: RPCParam[]) => Promise<any> } = {};
+  public defaultPrivateKey: string;
+  
+  public bch = {
+    createTransaction: (transactionObject: ITransactionObject) => this.createTransaction(transactionObject)
+  }
 
-  static rpcMethods = [
-    "generate",
-    "importaddress",
-    "listunspent",
-    "getwalletinfo",
-    "getbalance",
-    "sendtoaddress",
-    "importprivkey",
-    "getaddressesbyaccount",
-    "dumpprivkey",
+  private async createTransaction(transactionObject: ITransactionObject): Promise<any> {
+    const Address = bch.Address;
 
-    // experimental:
-    "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount", "getblockhash", "getblockheader", "getchaintips", "getchaintxstats", "getdifficulty", "getmempoolancestors", "getmempooldescendants", "getmempoolentry txid", "getmempoolinfo", "getrawmempool", "gettxout", "gettxoutproof", "gettxoutsetinfo", "preciousblock", "pruneblockchain", "verifychain", "verifytxoutproof “proof”", "getinfo", "getmemoryinfo", "help", "stop", "uptime", "generatetoaddress", "getblocktemplate", "getmininginfo", "getnetworkhashps", "prioritisetransaction", "submitblock", "addnode", "clearbanned", "disconnectnode", "getaddednodeinfo", "getconnectioncount", "getexcessiveblock", "getnettotals", "getnetworkinfo", "getpeerinfo", "listbanned", "ping", "setban", "setexcessiveblock", "setnetworkactive", "createrawtransaction", "decoderawtransaction", "decodescript", "getrawtransaction", "sendrawtransaction", "signrawtransaction", "createmultisig", "estimatefee", "estimatepriority", "estimatesmartfee", "estimatesmartpriority", "signmessagewithprivkey", "validateaddress", "verifymessage"
-  ];
+    const address = new Address(transactionObject.from);
+    console.log(address.toString(Address.CashAddrFormat))
 
-  private methodFactory(methodName: string) {
-    return (...params: RPCParam[]) => this.provider.send(methodName, ...params);
+    const unspentTxs = await this.rpc.listunspent(0, 20, [ transactionObject.from ]);
+
+    const _utxo = unspentTxs[0];
+
+    const utxo = {
+      'txId': _utxo.txid,
+      'outputIndex': 0,
+      'address': transactionObject.from,
+      'script': _utxo.scriptPubKey,
+      'satoshis': transactionObject.value
+    };
+
+    // bitcoincashjs works only with the standard format!
+    const transaction = new bch.Transaction()
+      .from(utxo)
+      .to(transactionObject.to, transactionObject.value)
+      .sign(transactionObject.privateKey || this.defaultPrivateKey);
+
+    return transaction;
   }
 }

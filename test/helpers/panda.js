@@ -3,21 +3,22 @@
 /**
  * Read more about panda here: https://panda-suite.github.io/
  */
-const panda = require("pandacash-cli")
+const panda = require("pandacash-core");
 
-const runLocalNode = done => {
+const runLocalNode = (cb) => {
   const server = panda.server({
     // always the same mnemonic
-    // mnemonic: "cigar magnet ocean purchase travel damp snack alone theme budget wagon wrong",
+    mnemonic: "evil sudden oven discover exist approve can catalog farm ivory mom rug",
     seedAccounts: true,
     enableLogs: false,
     debug: false
-  })
+  });
 
-  server.listen(48334, (err, pandaCashCore) => {
-    done(err, pandaCashCore)
-  })
-}
+  const core = server.listen({
+      port: 48334,
+      walletPort: 48335
+  }, cb);
+};
 
 module.exports = {
   runLocalNode

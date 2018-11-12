@@ -11,14 +11,15 @@ npm install bchjs
 ```javascript
 const { Web3BCH, HttpProvider } = require('bchjs');
 
-const web3bch = new Web3BCH(new HttpProvider('http://localhost:48332', 'regtest', 'regtest'));
+const httpNodeProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
+const httpNodeWalletProvider = new HttpProvider('http://localhost:48332', 'regtest', 'regtest');
+const web3bch = new Web3BCH(httpNodeProvider, httpNodeWalletProvider);
 
 await web3bch.rpc.getblockchaininfo();
 ```
 
-
 ## Pandacash and bchjs
-`bch.js` can be added to your application or tests, and be used accordingly. It can be configured to connect to any node. You can use [`pandacash-core`](https://github.com/panda-suite/pandacash-core) local blockchain for local development and testing. 
+`bch.js` can be added to your application or tests. It can be configured to connect to any node. You can use [`pandacash-core`](https://github.com/panda-suite/pandacash-core) local blockchain for local development and testing. 
 
 ```javascript
 const panda = require("pandacash-core");
@@ -34,20 +35,4 @@ await web3bch.rpc.getblockchaininfo();
 ```
 
 ## Supported RPC calls
-Currently, the following RPC calls are supported:
-
-* web3bch.rpc.getinfo
-* web3bch.rpc.getblockchaininfo
-* web3bch.rpc.importaddress
-* web3bch.rpc.generatetoaddress
-* web3bch.rpc.generate
-* web3bch.rpc.importaddress
-* web3bch.rpc.listunspent
-* web3bch.rpc.getwalletinfo
-* web3bch.rpc.getbalance
-* web3bch.rpc.sendtoaddress
-* web3bch.rpc.importprivkey
-* web3bch.rpc.getaddressesbyaccount
-* web3bch.rpc.dumpprivkey
-
-Other RPC calls will be added in a later version.
+All rpc methods have been added.

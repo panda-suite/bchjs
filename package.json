@@ -4,6 +4,9 @@
   "description": "bch.js is a lightweight wrapper around a Bitcoin Cash Node RPC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "mocha": "./node_modules/.bin/mocha",
     "test": "npm run build && npm run mocha",
